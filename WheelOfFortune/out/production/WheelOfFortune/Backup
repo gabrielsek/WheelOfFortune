@@ -1,0 +1,33 @@
+String pass = "Bez Pucy tutaj";
+        Text words[] = new Text[pass.length()];
+        Rectangle square[] = new Rectangle[pass.length()];
+        int rowLength = 10; // 10 w jednym rzedzie jest git
+        int max = rowLength;
+        int centering = 0;
+        for(int j = 0; j <= square.length/rowLength; j++) {
+            System.out.println(j);
+            if(j == square.length/rowLength) {
+                max = square.length % rowLength;
+                centering = (10 - max) * 20;
+            }
+
+            for(int i = 0 ; i < max; i++) {
+                Character temp = pass.charAt(i + j*rowLength);
+                System.out.println(temp + " " + (i+j*rowLength));
+                words[i + j*rowLength] = new Text(temp.toString());
+                words[i + j*rowLength].setFont(new Font(20));
+                square[i + j*rowLength] = new Rectangle(40, 40);
+                square[i + j*rowLength].setLayoutX(80 + centering + i * 40);
+                square[i + j*rowLength].setLayoutY(20 + j*50);
+                square[i + j*rowLength].setStroke(Color.PINK);
+                if(temp == ' ')
+                    square[i + j*rowLength].setFill(Color.WHITE);
+                words[i + j*rowLength].setLayoutX(square[i + j*10].getLayoutX() + 10);
+                words[i + j*rowLength].setLayoutY(square[i + j*10].getLayoutY() + 30);
+
+                hud.getChildren().add(square[i + j*rowLength]);
+                hud.getChildren().add(words[i + j*rowLength]);
+            }
+        }
+
+        /////
